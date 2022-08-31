@@ -25,8 +25,8 @@ class TestLogin(unittest.TestCase): #TEST SCENARIO
         response_message = browser.find_element(By.XPATH,"/html/body/div[2]/div/div[1]/h2").text
         response_data = browser.find_element(By.XPATH,"/html/body/div[2]/div/div[2]/div[1]").text
 
-        assert('Welcome',response_data)
-        assert(response_message, 'Anda Berhasil Login')
+        self.assertIn('Welcome',response_data)
+        self.assertEqual(response_message, 'Anda Berhasil Login')
 
     def test_failed_login_by_invalid_password(self):
         #Steps
@@ -44,8 +44,8 @@ class TestLogin(unittest.TestCase): #TEST SCENARIO
         response_message = browser.find_element(By.XPATH,"/html/body/div[2]/div/div[1]/h2").text
         response_data = browser.find_element(By.XPATH,"/html/body/div[2]/div/div[2]/div[1]").text
 
-        assert("Welcome User's not found ")
-        assert(response_message, 'Email atau Password Anda Salah')
+        self.assertIn("Welcome User's not found ")
+        self.assertEqual(response_message, 'Email atau Password Anda Salah')
         
     def tearDown(self):
         self.browser.close  
